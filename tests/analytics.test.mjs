@@ -1,0 +1,7 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {readFileSync} from 'node:fs';import {linear,forecastAudit,simulate,normalize,effectiveCost} from '../web/analytics.js';
+const rows=normalize(JSON.parse(readFileSync('web/snapshot.json')).rates);
+test('snapshot data contract',()=>{assert.ok(rows.length>=170);assert.equal(rows[0].date,'2026-01-05');assert.throws(()=>normalize([{date:'2026-01-01',rate:3},{date:'2026-01-01',rate:4}]))});
+test('flat series regression and effective cost',()=>{assert.equal(linear([3,3,3]).slope,0);const r=effectiveCost({soles:700,rate:3.5,feeSoles:0,feeUsd:1});assert.equal(r.usd,199);assert.ok(r.effective>3.5);assert.throws(()=>effectiveCost({soles:1,rate:3,feeUsd:2}))});
+test('regression forecast does not use target or future',()=>{const a=forecastAudit(rows,60,5);const edited=rows.map((r,i)=>({...r,rate:i>=64?r.rate+1:r.rate}));const b=forecastAudit(edited,60,5);assert.equal(a.rows[0].prediction,b.rows[0].prediction);assert.notEqual(a.rows[0].actual,b.rows[0].actual)});
+test('quincena simulation matches independently calculated initial report',()=>{const r=simulate(rows);assert.equal(r.periods.length,16);assert.ok(Math.abs(r.summary.find(s=>s.key==='wait').total-.139065510972)<1e-8);assert.ok(r.periods.every(p=>p.extra.oracle>=-1e-8));const half=simulate(rows,{amount:175});assert.ok(Math.abs(half.summary[1].total-r.summary[1].total/2)<1e-8)});
+test('incomplete future windows are excluded',()=>{const r=simulate(rows.slice(0,5));assert.equal(r.periods.length,0)});

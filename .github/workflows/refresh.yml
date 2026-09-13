@@ -1,0 +1,28 @@
+name: Actualizar BCRP y verificar frescura
+on:
+  schedule:
+    - cron: '37 23 * * 1-5' # 18:37 Lima. GitHub may delay scheduled jobs.
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/refresh.yml'
+      - 'scripts/refresh.mjs'
+permissions:
+  contents: read
+  id-token: write
+concurrency:
+  group: patrimonio-bcrp-refresh
+  cancel-in-progress: false
+jobs:
+  refresh:
+    if: github.repository == 'dinatalediego/patrimonio_en_monedas' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node scripts/refresh.mjs
+      - run: node scripts/health.mjs
