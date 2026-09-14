@@ -1,0 +1,7 @@
+# Mejora UX del simulador — 14 septiembre 2026
+
+Flujo: aporte por vez y frecuencia → entrada/salida → resultado. Presupuesto calculado como aporte × número de aportes; frecuencia quincenal = dos al mes. Se mantiene modo personalizado y motor financiero previo. Objetivo USD neutraliza el cambio de salida para el equilibrio; curva y ganancia utilizan USD. Ruta bancaria PEN se deshabilita con objetivo USD.
+
+Estados por costo: desconocido, cotizado o no aplica. Al cambiar de plataforma vuelven a desconocido. Los costos desconocidos mantienen resultados provisionales y se enumeran. El borrador y dos escenarios se mantienen en memoria durante la página abierta, también al cambiar secciones; no sobreviven al cierre/recarga. Editar marca resultados anteriores como pendientes de recalcular y bloquea guardar. Comparación valida presupuesto, plazo, retorno, moneda y cambios equivalentes. No declara un ganador con datos incompletos.
+
+Pruebas: 18 pruebas unitarias y script jsdom para interacciones de formulario, presupuesto, guardado, estado obsoleto, cambio de plataforma y navegación. Se ejecutan en previews y workflow investment-ux. jsdom es dependencia temporal de CI, no del portal. La sesión no dispone de navegador visual; queda pendiente revisar visualmente escritorio/móvil y tecnologías asistivas en un navegador real. CSS corrige el encabezado horizontal y adapta etapas/costos a pantallas pequeñas.
