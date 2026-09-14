@@ -39,7 +39,7 @@ Proyecto Supabase: `tlyczyfsboqrtrdpwizp` (proyecto existente del propietario).
 
 `ci.yml`: en push/PR, ejecuta pruebas y construye el portal; conserva el artefacto 14 días.
 
-`refresh.yml`: días laborables a las 23:37 UTC (18:37 Lima), ejecución manual y cambios del propio workflow. Obtiene un JWT efímero OIDC; no requiere guardar una clave de escritura de Supabase en GitHub. La función solo acepta el repositorio/ID exacto, propietario/ID, main, workflow autorizado, audiencia, emisor y firma verificadas. Rechaza PR y forks. Guarda el run ID, estado, hash y fechas.
+`refresh.yml`: días laborables cada hora de 09:37 a 19:37 Lima (minuto 37), ejecución manual y cambios del propio workflow. Obtiene un JWT efímero OIDC; no requiere guardar una clave de escritura de Supabase en GitHub. La función solo acepta el repositorio/ID exacto, propietario/ID, main, workflow autorizado, audiencia, emisor y firma verificadas. Rechaza PR y forks. Guarda el run ID, estado, hash y fechas.
 
 El cron no garantiza puntualidad. El job falla si la última observación tiene más de 7 días; la interfaz avisa desde 4 días. GitHub puede desactivar cron tras inactividad prolongada en repositorios públicos: vigilar Actions y reactivar si corresponde.
 

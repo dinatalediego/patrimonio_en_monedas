@@ -8,3 +8,13 @@
 - Auditor Supabase: tablas de auditoría sin políticas públicas por diseño (deny-all); pm_rates visible públicamente por diseño, al ser referencia BCRP. No se modificaron avisos de otros proyectos.
 
 Las pruebas de autorización por claims no sustituyen una ejecución real de firma OIDC. Registrar el resultado de CI/refresh y despliegue en el cierre de entrega.
+
+## Evidencia operativa — 13/09/2026
+
+- CI exitoso: https://github.com/dinatalediego/patrimonio_en_monedas/actions/runs/34777284231
+- Actualización OIDC exitosa: https://github.com/dinatalediego/patrimonio_en_monedas/actions/runs/34777284280
+- Supabase registró `github:34777284280:1`, success, 170 filas, corte 2026-09-10.
+- Petición POST con token inválido a pm-refresh: HTTP 401 unauthorized.
+- Publicación Vercel READY; navegador confirmó lectura desde Supabase y las cifras del simulador.
+- Portal: https://patrimonio-en-monedas.vercel.app
+- Integración Git de futuros despliegues: no confirmada por la API del proyecto. Configurar en Settings → Git para que futuros commits generen despliegues automáticamente. Los datos sí se actualizan sin desplegar el frontend.

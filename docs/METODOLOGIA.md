@@ -35,3 +35,5 @@ El informe BBVA del 18 de junio proyectaba S/3.20–3.30 para el cierre de 2026 
 
 ## Reproducción
 Python con numpy, pandas, matplotlib y scipy. Conservar fx_raw.json al lado de los scripts. Ejecutar analisis_fx.py y luego complemento_fx.py. No se necesitan credenciales ni conexión para recalcular esta muestra. Los CSV incluidos son insumos y resultados, no una hoja de cálculo con fórmulas.
+
+Los scripts originales y la respuesta BCRP del estudio inicial están incluidos en `research/`. Ejecutarlos allí con Python + numpy/pandas/matplotlib/scipy genera `research/resultado_fx/`; no altera el backend. El frontend utiliza `web/analytics.js`, con pruebas que comparan contra el resultado original.

@@ -1,7 +1,8 @@
-name: Actualizar BCRP y verificar frescura
+name: Actualizar BCRP cada hora y verificar frescura
 on:
   schedule:
-    - cron: '37 23 * * 1-5' # 18:37 Lima. GitHub may delay scheduled jobs.
+    - cron: '37 14-23 * * 1-5' # 09:37–18:37 Lima, hourly on weekdays.
+    - cron: '37 0 * * 2-6' # 19:37 Lima on the preceding business day.
   workflow_dispatch:
   push:
     branches: [main]

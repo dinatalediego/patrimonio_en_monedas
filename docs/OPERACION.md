@@ -35,7 +35,7 @@ Un `running` antiguo puede indicar interrupción antes de registrar el resultado
 
 ## Costos y dependencia
 
-Frontend estático sin runtime de SSR ni LLM. Una consulta pública de serie por carga de página; ingestión aproximadamente una vez por día laborable. Se usa un proyecto Supabase existente. El uso queda sujeto al plan y cuotas de las plataformas; no se promete costo cero indefinido.
+Frontend estático sin runtime de SSR ni LLM. Una consulta pública de serie por carga de página; hasta 11 comprobaciones por día laborable. Se usa un proyecto Supabase existente. El uso queda sujeto al plan y cuotas de las plataformas; no se promete costo cero indefinido.
 
 ## Evolución
 
