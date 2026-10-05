@@ -1,11 +1,6 @@
 name: Review investment fee freshness
 on:
-  schedule:
-    - cron: '17 14 * * 1'
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths: ['web/fees.json', 'scripts/check-fees.mjs', '.github/workflows/fees-review.yml']
 permissions:
   contents: read
 jobs:
